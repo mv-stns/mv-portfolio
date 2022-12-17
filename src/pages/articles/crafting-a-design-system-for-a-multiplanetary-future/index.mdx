@@ -1,0 +1,265 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/future/image'
+import designSystem from './planetaria-design-system.png'
+
+export const meta = {
+  author: 'Marcus Vaitschulis',
+  date: '2022-09-05',
+  title: 'Crafting a design system for a multiplanetary future',
+  description:
+    'Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.
+
+<Image src={designSystem} alt="" />
+
+I knew that to get it right I was going to have to replicate the viewing conditions of someone from the future, so I grabbed my space helmet from the closet, created a new Figma document, and got to work.
+
+## Sermone fata
+
+Lorem markdownum, bracchia in redibam! Terque unda puppi nec, linguae posterior
+in utraque respicere candidus Mimasque formae; quae conantem cervice. Parcite
+variatus, redolentia adeunt. Tyrioque dies, naufraga sua adit partibus celanda
+torquere temptata, erit maneat et ramos, [iam](#) ait dominari
+potitus! Tibi litora matremque fumantia condi radicibus opusque.
+
+Deus feram verumque, fecit, ira tamen, terras per alienae victum. Mutantur
+levitate quas ubi arcum ripas oculos abest. Adest [commissaque
+victae](#) in gemitus nectareis ire diva
+dotibus ora, et findi huic invenit; fatis? Fractaque dare superinposita
+nimiumque simulatoremque sanguine, at voce aestibus diu! Quid veterum hausit tu
+nil utinam paternos ima, commentaque.
+
+```c
+exbibyte_wins = gigahertz(3);
+grayscaleUtilityClient = control_uat;
+pcmciaHibernate = oop_virus_console(text_mountain);
+if (stateWaisFirewire >= -2) {
+    jfs = 647065 / ldapVrml(tutorialRestore, 85);
+    metal_runtime_parse = roomComputingResolution - toolbarUpload +
+            ipx_nvram_open;
+} else {
+    maximizeSidebar *= suffix_url(flatbed + 2, requirements_encoding_node +
+            only_qbe_media, minicomputer);
+}
+```
+
+### **Datentypen**
+> 	Wahrheitswerte / boolesche Werte → `boolean`
+> 	`true` – `false`
+> 	Ganzzahlwerte / Integralwerte → `byte` `char` `short` `int` `long`
+> 	`char`
+> 	character
+> 	[x=u](tex://x=u) ← Zeichen 
+> 	`byte` → 8 bit
+> 	`short` → 16 bit
+> 	`int` → 32 bit
+> 	`long` → 64 bit
+> 	Fließkommawerte → `float` `double`
+> 	[x=v*m*2exp](tex://x=v*m*2exp)
+> 	[m =](tex://m =) Mantisse (Genauigkeit des Werts)
+> 	Zeichenketten → `string`
+
+
+### Tabelle
+
+
+2147483647
+
+32767
+
+\uFFFF
+
+127
+
+-
+
+-2147483648
+
+-32768
+
+\u0000
+
+-128
+
+-
+
+64 Bit
+
+16 Bit
+
+0
+
+Integer mit Vorzeichen
+
+short
+
+32 Bit
+
+64 Bit
+
+32 Bit
+
+16 Bit
+
+8 Bit
+
+1 Bit
+
+Größe
+
+
+0.0
+0.0
+
+0
+
+0
+
+\u0000
+
+0
+
+false
+
+IEEE 754 Fließkommazahl
+
+double
+
+Integer mit Vorzeichen
+
+Integer mit Vorzeichen
+
+float
+
+long
+
+int
+
+Unicode-Zeichen
+
+Integer mit Vorzeichen
+
+true o. false
+
+char
+
+byte
+
+boolean
+
+Standard
+
+Inhalt
+
+Typ
+
+IEEE 754 Fließkommazahl
+
+Minimalwert
+
+Maximalwert
+
+-9223372036854775808
+
+9223372036854775807
+
+±1.40239846E-45
+
+±3.40282347E+38
+
+±4.94065645841246544E-324
+
+±1.79769313486231570E+308
+
+### **Variablen**
+
+
+	…werden definiert durch Variablen-Namen + den Datentypen
+
+#### 	**Sprachkonstrukt /**
+
+
+	Eine Variable: `Datentyp` `Variablenname`;
+
+	Mehrere Variablen: `Datentyp` `Variablenname`, `Variablenname`, `. . .`;
+
+	Bsp.: `double tomatenmark;`
+
+#### 	**Ausdruck**
+
+
+	…dienen zur Berechnung eines Wertes
+
+	`Variable = Ausdruck Operator Ausdruck Operator Ausdruck;`
+
+
+	- 4 (unärer Operator)
+
+	1 + 4 (binärer Operator)
+
+
+		- **Arithmetische Operatoren**
+
+	`+` `-` `*` `/` `% Modulodivision`
+
+
+		- **Zuweisungsoperatoren**
+
+	`=`
+
+
+		- **Vergleichsoperatoren**
+
+	`<` `=` `>` `<=` `>=` `!=`
+
+
+		- **Logische Operatoren**
+
+	`&&` `||` `!` `^`
+
+
+		- **Bitmanipulationsoperatoren**
+
+	`&` `|` `!` `^` `<<` `>>`
+
+	**weitere Operatoren**
+
+
+		- **Cast-Operator**
+
+	`(` `Datentyp` `)`
+
+
+		- **Klammern**
+
+	`(` `Ausdruck` `)`
+
+
+		- **Indexierung von Foldern**
+
+	`[` `Integraler Ausdruck` `]`
+
+
+		- **Bedingter Ausdruck**
+
+	`Boolescher Ausdruck` `?` `Ausdruck`[_1](tex://_1) `:` `Ausdruck`[_2](tex://_2)
+
+
+		- **Typ-Operator**
+
+	`instanceof`
+
+#### 	**Zuweisung**
+
+
+	**Einfache Zuweisung**
+
+	`Variable` `=` `Wert` → `z` `=` `34` ← Standardmäßig `Integer`
+
+	**Mehrfach Zuweisung**
+
+	`Variable`[_1](tex://_1) `=` `Variable`[_2](tex://_2) `=` `Wert` → `i` `=` `j` `=` `9`
