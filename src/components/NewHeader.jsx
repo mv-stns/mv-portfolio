@@ -12,10 +12,12 @@ import {
 } from '@heroicons/react/24/solid'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
-import airbnbLogo from '@/images/logos/airbnb.svg'
+// @ts-ignore
+import profilePicture from '@/images/avatar.png'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 const solutions = [
   {
@@ -69,21 +71,28 @@ function NavItem({ href, children }) {
   let isActive = useRouter().pathname === href
 
   return (
-      <Link
-        href={href}
-        className={clsx(
-          // font SF Pro
-          'text-base relative font-medium tracking-tight transition px-4 py-1 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif] text-gray-900 dark:text-gray-100',
-          isActive
-            ? 'text-orange-500 dark:text-orange-400 bg-orange-100'
-            : 'hover:text-orange-500 dark:hover:text-orange-400'
-        )}
+      <motion.div
+        // fade every item in with delay which adds up for each Navigation Item
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        
       >
-        {children}
-        {/* {isActive && (
-          <span className="absolute h-[3px] inset-x-1 -bottom-px bg-gradient-to-r from-orange-500/0 via-orange-500/40 to-orange-500/0 dark:from-orange-400/0 dark:via-orange-400/40 dark:to-orange-400/0" />
-        )} */}
-      </Link>
+        <Link
+          href={href}
+          className={clsx(
+            // font SF Pro
+            'text-base relative font-medium tracking-tight transition px-4 py-1 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif] text-gray-900 dark:text-gray-100',
+            isActive
+              ? 'text-orange-500 dark:text-orange-400 bg-orange-100'
+              : 'hover:text-orange-500 dark:hover:text-orange-400'
+          )}
+        >
+          {children}
+          {/* {isActive && (
+            <span className="absolute h-[3px] inset-x-1 -bottom-px bg-gradient-to-r from-orange-500/0 via-orange-500/40 to-orange-500/0 dark:from-orange-400/0 dark:via-orange-400/40 dark:to-orange-400/0" />
+          )} */}
+        </Link>
+      </motion.div>
   )
 }
 
@@ -98,18 +107,36 @@ function CollapseHeader({ children }) {
 
 export function NewHeader() {
   return (
+    <motion.div
+      initial={{ y: -100, opacity: 0, scale: 0.8 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      transition={{ duration: 1, type: 'spring', stiffness: 50 }}
+    >
     <Popover className="relative sticky z-50 m-4 rounded-full shadow-xl top-4 ring-1 ring-gray-200 bg-white/80 backdrop-blur-sm">
       <div className="flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, rotate: 45 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.5, type: 'spring', stiffness: 400 }}
+              whileHover={{ rotate: -20, scale: 1.1 }}
+              
+            >
         <div>
           <a href="#" className="flex">
-            <span className="sr-only">Workflow</span>
+            <span className="sr-only">Marcus Vaitschulis</span>
             <Image
-              className="w-auto h-8 sm:h-10"
-              src={airbnbLogo}
-              alt="Logo"
+              className={clsx(
+                'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 ring ring-gray-200 ring-inset brightness-75 h-16 w-16'
+              )}
+              src={profilePicture}
+              alt="Profile Image"
+              priority
+              width={64}
+              height={64}
             />
           </a>
         </div>
+          </motion.div>
         <NavItem href="/">Home</NavItem>
         <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Articles</NavItem>
@@ -264,10 +291,11 @@ export function NewHeader() {
               <div className="flex items-center justify-between">
                 <div>
                 <Image
-              className="w-auto h-8 sm:h-10"
-              src={airbnbLogo}
-              alt="Logo"
-            />
+              className="w-8 h-8"
+              src={profilePicture}
+              alt="Profile Image"
+              priority
+              />
                 </div>
                 <div className="-mr-2">
                   <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
@@ -331,5 +359,6 @@ export function NewHeader() {
         </Popover.Panel>
       </Transition>
     </Popover>
+    </motion.div>
   )
 }

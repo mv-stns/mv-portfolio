@@ -2,7 +2,7 @@ import Image from 'next/future/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -162,7 +162,8 @@ function Newsletter() {
   )
 }
 
-function Resume() {
+function Resume({isVisible}) {
+
   let education = [
     {
       school: 'Hochschule RheinMain',
@@ -217,6 +218,14 @@ function Resume() {
   ]
 
   return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          />
+      )}
     <div className="p-6 space-y-10 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
       <div>
         <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -298,12 +307,13 @@ function Resume() {
             </li>
           ))}
         </ol>
-        <Button href="#" variant="secondary" className="w-full mt-6 group">
+        <Button variant="disabled" disabled className="w-full mt-6 group">
           Download CV
           <ArrowDownIcon className="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
         </Button>
       </div>
     </div>
+    </AnimatePresence>
   )
 }
 
@@ -366,12 +376,12 @@ export default function Home({ articles }) {
           <h1 className="text-4xl font-black tracking-tight text-center text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Media computer science student, UI/UX designer and web developer
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 text-base text-center text-zinc-600 dark:text-zinc-400">
             I&apos;m Marcus, a media computer science student, UI/UX designer and web developer and currently in my first year 
             at the University of Applied Sciences in Wiesbaden, Germany.
-            I&apos;m the founder and CEO of v.Cloud, where I develop technologies that empower students workflows.
+            I develop software to aquire better understanding and to change the future
           </p>
-          <div className="flex gap-6 mt-6">
+          <div className="flex items-center justify-center gap-6 mt-6">
             <SocialLink
               href="https://twitter.com/marcussowieso"
               aria-label="Follow on Twitter"
