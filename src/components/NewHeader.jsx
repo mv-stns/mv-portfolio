@@ -19,6 +19,73 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
+function SunIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z" />
+      <path
+        d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
+        fill="none"
+      />
+    </svg>
+  )
+}
+
+function MoonIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function ModeToggle() {
+  function disableTransitionsTemporarily() {
+    document.documentElement.classList.add('[&_*]:!transition-none')
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('[&_*]:!transition-none')
+    }, 0)
+  }
+
+  function toggleMode() {
+    disableTransitionsTemporarily()
+
+    let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    let isSystemDarkMode = darkModeMediaQuery.matches
+    let isDarkMode = document.documentElement.classList.toggle('dark')
+
+    if (isDarkMode === isSystemDarkMode) {
+      delete window.localStorage.isDarkMode
+    } else {
+      window.localStorage.isDarkMode = isDarkMode
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      aria-label="Toggle dark mode"
+      className="flex px-3 py-2 ml-auto transition rounded-full shadow-lg group bg-white/90 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+      onClick={toggleMode}
+    >
+      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-orange-50 [@media(prefers-color-scheme:dark)]:stroke-orange-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-orange-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-orange-600" />
+      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-orange-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-orange-500" />
+    </button>
+  )
+}
+
 const solutions = [
   {
     name: 'Analytics',
@@ -71,28 +138,21 @@ function NavItem({ href, children }) {
   let isActive = useRouter().pathname === href
 
   return (
-      <motion.div
-        // fade every item in with delay which adds up for each Navigation Item
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        
-      >
         <Link
           href={href}
           className={clsx(
             // font SF Pro
-            'text-base relative font-medium tracking-tight transition px-4 py-1 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif] text-gray-900 dark:text-gray-100',
+            'text-base relative font-medium tracking-tight transition px-4 py-1 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif]',
             isActive
-              ? 'text-orange-500 dark:text-orange-400 bg-orange-100'
-              : 'hover:text-orange-500 dark:hover:text-orange-400'
+              ? 'text-zinc-800 dark:text-orange-400'
+              : 'hover:text-orange-500 dark:hover:text-orange-400 dark:text-zinc-300 text-zinc-500'
           )}
         >
           {children}
-          {/* {isActive && (
-            <span className="absolute h-[3px] inset-x-1 -bottom-px bg-gradient-to-r from-orange-500/0 via-orange-500/40 to-orange-500/0 dark:from-orange-400/0 dark:via-orange-400/40 dark:to-orange-400/0" />
-          )} */}
+          {isActive && (
+            <span className="absolute h-[1px] inset-x-1 -bottom-px bg-gradient-to-r from-blue-500/0 via-orange-400/80 to-blue-500/0 dark:from-orange-400/0 dark:via-orange-400/40 dark:to-orange-400/0" />
+          )}
         </Link>
-      </motion.div>
   )
 }
 
@@ -111,9 +171,10 @@ export function NewHeader() {
       initial={{ y: -100, opacity: 0, scale: 0.8 }}
       animate={{ y: 0, opacity: 1, scale: 1 }}
       transition={{ duration: 1, type: 'spring', stiffness: 50 }}
+      className="relative sticky z-50 m-4 rounded-full shadow-xl top-4 ring-1 ring-gray-200 bg-white/80 dark:ring-zinc-700 dark:bg-zinc-800/80 backdrop-blur-sm"
     >
-    <Popover className="relative sticky z-50 m-4 rounded-full shadow-xl top-4 ring-1 ring-gray-200 bg-white/80 backdrop-blur-sm">
-      <div className="flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
+    <Popover>
+      <div className="flex items-center justify-between px-4 py-6 sm:px-6 md:space-around md:space-x-10">
             <motion.div
               initial={{ scale: 0.9, opacity: 0, rotate: 45 }}
               animate={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -126,7 +187,7 @@ export function NewHeader() {
             <span className="sr-only">Marcus Vaitschulis</span>
             <Image
               className={clsx(
-                'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 ring ring-gray-200 ring-inset brightness-75 h-16 w-16'
+                'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 ring ring-zinc-200 dark:ring-zinc-800 ring-inset brightness-75 h-16 w-16'
               )}
               src={profilePicture}
               alt="Profile Image"
@@ -143,10 +204,10 @@ export function NewHeader() {
         <NavItem href="/projects">Projects</NavItem>
         <NavItem href="/speaking">Speaking</NavItem>
         <NavItem href="/uses">Uses</NavItem>
-        <div className="-my-2 -mr-2 md:hidden">
+        {/* <div className="-my-2 -mr-2 md:hidden">
           <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
-            <span className="sr-only">Open menu</span>
-            <Squares2X2Icon className="w-6 h-6" aria-hidden="true" />
+              <span className="sr-only">Open menu</span>
+              <Squares2X2Icon className="w-6 h-6" aria-hidden="true" />
           </Popover.Button>
         </div>
         <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
@@ -262,18 +323,8 @@ export function NewHeader() {
               )}
             </Popover>
           </Popover.Group>
-          {/* <div className="flex items-center md:ml-12">
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-orange-600 border border-transparent rounded-md shadow-sm hover:bg-orange-700"
-            >
-              Sign up
-            </a>
-          </div> */}
-        </div>
+        </div> */}
+        <ModeToggle />
       </div>
 
       <Transition
@@ -329,6 +380,7 @@ export function NewHeader() {
                 <NavItem href="/projects">Projects</NavItem>
                 <NavItem href="/speaking">Speaking</NavItem>
                 <NavItem href="/uses">Uses</NavItem>
+                <ModeToggle />
                 
                 {resources.map((item) => (
                   <a
