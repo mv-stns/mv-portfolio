@@ -60,9 +60,8 @@ export default function About() {
                   transition: { duration: 0.3, type: 'spring', stiffness: 150 },
                   rotate: -5,
                  }}
-                whileInView={{
+                initial={{
                   opacity: 1,
-                  transition: { duration: 0.3, type: 'spring', stiffness: 150 },
                   rotate: 10,
                 }}
                 >
