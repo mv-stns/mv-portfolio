@@ -13,6 +13,7 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpeg'
 import { MotionConfig } from 'framer-motion'
+import {Signature} from "@/components/Signature";
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -97,17 +98,14 @@ export default function About() {
               I am passionate about using technology to make a positive impact in the world, and I can’t wait to see where my love for computers and design software will take me next.
               </p>
               <p>
-                I spent the next few summers indoors working on a rocket design,
-                while I recovered from the multiple surgeries it took to fix my
-                badly broken legs. It took nine iterations, but when I was 15 I
-                sent my dad’s Blackberry into orbit and was able to transmit a
-                photo back down to our family computer from space.
+                I spent multiple days developing private projects, and I am always looking for new ways to use my skills to create and innovate. I am passionate about using technology to make a positive impact in the world, and I can’t wait to see where my love for computers and design software will take me next.
               </p>
               <p>
-                Today, I’m the founder of Planetaria, where we’re working on
-                civilian space suits and manned shuttle kits you can assemble at
-                home so that the next generation of kids really <em>can</em>{' '}
-                make it to orbit — from the comfort of their own backyards.
+                Today I am studying at the University of Applied Sciences Wiesbaden, where I am learning how to design and develop applications. I am also working as a freelance designer, and I am always looking for new projects to work on.
+              </p>
+              <p>
+                Yours truly,
+                  <Signature className="h-20 text-zinc-700" />
               </p>
             </div>
           </div>
