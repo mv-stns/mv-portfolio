@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
   ChartBarIcon,
@@ -166,12 +166,21 @@ function CollapseHeader({ children }) {
 }
 
 export function NewHeader() {
+
+  const variants = {
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: custom*0.5 , duration: 0.5, stiffness: 150, type: 'spring', damping: 40 },
+    })
+  }
+
   return (
     <motion.div
-      initial={{ y: -100, opacity: 0, scale: 0.8 }}
+      initial={{ y: -100, opacity: 0, scale: 0.9 }}
       animate={{ y: 0, opacity: 1, scale: 1 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 50 }}
-      className="relative sticky z-50 m-4 rounded-full shadow-xl top-4 ring-1 ring-gray-200 bg-white/80 dark:ring-zinc-700 dark:bg-zinc-800/80 backdrop-blur-sm"
+      transition={{ duration: 3, type: 'spring', stiffness: 250, damping: 20 }}
+      className="relative sticky z-50 m-4 rounded-full top-4 ring-1 ring-gray-200 bg-white/80 dark:ring-zinc-700 dark:bg-zinc-800/80 backdrop-blur-sm shadow-xl dark:shadow-orange-400/20"
     >
     <Popover>
       <div className="flex items-center justify-between px-4 py-6 sm:px-6 md:space-around md:space-x-10">
@@ -198,12 +207,12 @@ export function NewHeader() {
           </a>
         </div>
           </motion.div>
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/speaking">Speaking</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
+          <motion.div initial={{opacity: 0, y: 40}} custom={1} animate="visible" variants={variants}><NavItem href="/">Home</NavItem></motion.div>
+          <motion.div initial={{opacity: 0, y: 40}} custom={2} animate="visible" variants={variants}><NavItem href="/about">About</NavItem></motion.div>
+          <motion.div initial={{opacity: 0, y: 40}} custom={3} animate="visible" variants={variants}><NavItem href="/articles">Articles</NavItem></motion.div>
+          <motion.div initial={{opacity: 0, y: 40}} custom={4} animate="visible" variants={variants}><NavItem href="/projects">Projects</NavItem></motion.div>
+          {/*<motion.div initial={{opacity: 0, y: 40}} custom={5} animate="visible" variants={variants}><NavItem href="/speaking">Speaking</NavItem></motion.div>*/}
+          <motion.div initial={{opacity: 0, y: 40}} custom={6} animate="visible" variants={variants}><NavItem href="/uses">Uses</NavItem></motion.div>
         {/* <div className="-my-2 -mr-2 md:hidden">
           <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
               <span className="sr-only">Open menu</span>
