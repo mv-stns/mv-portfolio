@@ -41,46 +41,40 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
+            <Tool title="16” MacBook Pro, Intel Core i7, 16GB RAM (Late 2019)">
+              All handy for web development, but I’m not a fan of the keyboard.
+              Could be better. But trusty nonetheless. Worked well for me for the last 2 years.
             </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
+            <Tool title="hp Pavilion 27xi Display">
+              Does it&apos;s job. Great additional screen for my MacBook Pro.
             </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
+            <Tool title="MX Keys for Mac">
+                I love the keyboard. It&apos;s a bit pricey, but it&apos;s worth it.
+                I&apos;m using it for a year now and I&apos;m still happy with it.
+                It has a great feel and it&apos;s very quiet.
             </Tool>
-            <Tool title="Apple Magic Trackpad">
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
-            </Tool>
-            <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+            <Tool title="MX Master 3s">
+              The best office mouse I&apos;ve ever used. Very comfortable and precise.
+              Alot of features and it&apos;s very customizable. Also using it for a year now and I&apos;m still happy with it.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Sublime Text 4">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+            <Tool title="VSCode">
+              Very powerful and customizable. Community is great & the extensions are awesome.
+              I&apos;m recently switched to WebStorm, but I&apos;m still using VSCode for some projects.
             </Tool>
-            <Tool title="iTerm2">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
+            <Tool title="PhpStorm">
+                Very powerful php IDE. Didn&apos;t use it for a long time, but will try out in my higher education.
+            </Tool>
+            <Tool title="WebStorm">
+              Currently using WebStorm for my projects. Beautiful new interface and great features.
+              I&apos;ll stick with it for a while until I&apos;ll miss VSCode 😅.
+            </Tool>
+            <Tool title="Warp">
+              Very fast and powerful Terminal. Artifical Intelligence is very handy when i need to search for something.
             </Tool>
             <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+              Best databaste tool avaliable for Mac. Period.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Design">
@@ -89,27 +83,28 @@ export default function Uses() {
               our virtual whiteboard for the entire company. Never would have
               expected the collaboration features to be the real hook.
             </Tool>
+            <Tool title="Adobe Creative Cloud">
+              Who would have thought.
+              No but for real, it&apos;s a great tool for designers. The best if you ask me.
+              But unfortunately it&apos;s a subscription model and takes the money out of your pocket.
+            </Tool>
+            <Tool title="Affinity Suit by Sans Serif">
+              The biggest competitor to Adobe Creative Cloud. Huge software with similar features like Adobe.
+              One time payment and you&apos;re good to go.
+            </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Alfred">
-              It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
+            <Tool title="Raycast">
+              The fastest commandbar for Mac. Heavily customizable and very fast.
+              If you&apos;re using a Mac, you have to try it out.
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+            <Tool title="Craft.do">
+              Writing down my daily notes and some tasks. Heavily using it for my education.
+              Great features like TeX Support, Markdown Support, and more.
             </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
-            </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+            <Tool title="Notion">
+              Second Brain for me. Writing down my tasks with Hyper, an Extension for Raycast,
+              to easily access my tasks. Also using it for my education and for work.
             </Tool>
           </ToolsSection>
         </div>
