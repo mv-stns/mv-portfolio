@@ -137,15 +137,28 @@ function classNames(...classes) {
 function NavItem({ href, children }) {
   let isActive = useRouter().pathname === href
 
+
+  function checkViewport() {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 768) {
+        return "flex items-center justify-center -m-3"
+      } else {
+        return false
+      }
+    }
+  }
+
   return (
         <Link
           href={href}
           className={clsx(
             // font SF Pro
-            'text-base relative font-medium tracking-tight transition px-4 py-1 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif]',
+            'text-base relative font-medium tracking-tight transition px-5 py-2 rounded-md font-[font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif] rounded-lg hover:bg-gray-50 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 shadow-lg shadow-zinc-800/5',
             isActive
               ? 'text-zinc-800 dark:text-orange-400'
-              : 'hover:text-orange-500 dark:hover:text-orange-400 dark:text-zinc-300 text-zinc-500'
+              : 'hover:text-orange-500 dark:hover:text-orange-400 dark:text-zinc-300 text-zinc-500',
+              // add classVariants value
+                checkViewport()
           )}
         >
           {children}
@@ -207,132 +220,18 @@ export function NewHeader() {
           </a>
         </div>
           </motion.div>
-          <motion.div initial={{opacity: 0, y: 40}} custom={1} animate="visible" variants={variants}><NavItem href="/">Home</NavItem></motion.div>
-          <motion.div initial={{opacity: 0, y: 40}} custom={2} animate="visible" variants={variants}><NavItem href="/about">About</NavItem></motion.div>
-          <motion.div initial={{opacity: 0, y: 40}} custom={3} animate="visible" variants={variants}><NavItem href="/articles">Articles</NavItem></motion.div>
-          <motion.div initial={{opacity: 0, y: 40}} custom={4} animate="visible" variants={variants}><NavItem href="/projects">Projects</NavItem></motion.div>
-          {/*<motion.div initial={{opacity: 0, y: 40}} custom={5} animate="visible" variants={variants}><NavItem href="/speaking">Speaking</NavItem></motion.div>*/}
-          <motion.div initial={{opacity: 0, y: 40}} custom={6} animate="visible" variants={variants}><NavItem href="/uses">Uses</NavItem></motion.div>
-        {/* <div className="-my-2 -mr-2 md:hidden">
-          <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
+          <motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={1} animate="visible" variants={variants}><NavItem href="/">Home</NavItem></motion.div>
+          <motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={2} animate="visible" variants={variants}><NavItem href="/about">About</NavItem></motion.div>
+          <motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={3} animate="visible" variants={variants}><NavItem href="/articles">Articles</NavItem></motion.div>
+          <motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={4} animate="visible" variants={variants}><NavItem href="/projects">Projects</NavItem></motion.div>
+          {/*<motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={5} animate="visible" variants={variants}><NavItem href="/speaking">Speaking</NavItem></motion.div>*/}
+          <motion.div className="hidden md:flex" initial={{opacity: 0, y: 40}} custom={6} animate="visible" variants={variants}><NavItem href="/uses">Uses</NavItem></motion.div>
+          <div className="-my-2 -mr-2 ml-auto md:hidden">
+          <Popover.Button className="inline-flex items-center dark:text-zinc-600 justify-center p-2 text-gray-400 bg-white dark:bg-zinc-800 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
               <span className="sr-only">Open menu</span>
               <Squares2X2Icon className="w-6 h-6" aria-hidden="true" />
           </Popover.Button>
         </div>
-        <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
-          <Popover.Group as="nav" className="flex space-x-10">
-            <Popover className="relative">
-              {({ open }) => (
-                <>
-                  <Popover.Button
-                    className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
-                      'group rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
-                    )}
-                  >
-                    <span>Solutions</span>
-                    <ChevronDownIcon
-                      className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500'
-                      )}
-                      aria-hidden="true"
-                    />
-                  </Popover.Button>
-
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-200"
-                    enterFrom="opacity-0 translate-y-1"
-                    enterTo="opacity-100 translate-y-0"
-                    leave="transition ease-in duration-150"
-                    leaveFrom="opacity-100 translate-y-0"
-                    leaveTo="opacity-0 translate-y-1"
-                  >
-                    <Popover.Panel className="absolute z-10 w-screen max-w-md mt-3 -ml-4 transform lg:max-w-3xl">
-                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8 lg:grid-cols-2">
-                          {solutions.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50"
-                            >
-                              <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-orange-500 rounded-md sm:h-12 sm:w-12">
-                                <item.icon className="w-6 h-6" aria-hidden="true" />
-                              </div>
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
-                              </div>
-                            </a>
-                          ))}
-                        </div>
-                        <div className="p-5 bg-gray-50 sm:p-8">
-                          <a href="#" className="flow-root p-3 -m-3 rounded-md hover:bg-gray-100">
-                            <div className="flex items-center">
-                              <div className="text-base font-medium text-gray-900">Enterprise</div>
-                              <span className="ml-3 inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-orange-100 text-orange-800">
-                                New
-                              </span>
-                            </div>
-                            <p className="mt-1 text-sm text-gray-500">
-                              Empower your entire team with even more advanced tools.
-                            </p>
-                          </a>
-                        </div>
-                      </div>
-                    </Popover.Panel>
-                  </Transition>
-                </>
-              )}
-            </Popover>
-            <Popover className="relative">
-              {({ open }) => (
-                <>
-                  <Popover.Button
-                    className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
-                      'group rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
-                    )}
-                  >
-                    <span>More</span>
-                    <ChevronDownIcon
-                      className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500'
-                      )}
-                      aria-hidden="true"
-                    />
-                  </Popover.Button>
-
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-200"
-                    enterFrom="opacity-0 translate-y-1"
-                    enterTo="opacity-100 translate-y-0"
-                    leave="transition ease-in duration-150"
-                    leaveFrom="opacity-100 translate-y-0"
-                    leaveTo="opacity-0 translate-y-1"
-                  >
-                    <Popover.Panel className="absolute z-10 w-screen max-w-xs px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0">
-                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
-                            <a key={item.name} href={item.href} className="block p-3 -m-3 rounded-md hover:bg-gray-50">
-                              <p className="text-base font-medium text-gray-900">{item.name}</p>
-                              <p className="mt-1 text-sm text-gray-500">{item.description}</p>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </Popover.Panel>
-                  </Transition>
-                </>
-              )}
-            </Popover>
-          </Popover.Group>
-        </div> */}
         <ModeToggle />
       </div>
 
@@ -346,27 +245,19 @@ export function NewHeader() {
         leaveTo="opacity-0 scale-95"
       >
         <Popover.Panel focus className="absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden">
-          <div className="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50">
+          <div className="bg-white dark:bg-zinc-800 divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
-                <div>
-                <Image
-              className="w-8 h-8"
-              src={profilePicture}
-              alt="Profile Image"
-              priority
-              />
-                </div>
-                <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
+                <div className="-mr-2 ml-auto">
+                  <Popover.Button className="inline-flex items-center justify-center p-2 dark:text-orange-500 text-zinc-400 hover:text-zinc-500 dark:hover:text-orange-500 rounded-md group bg-white/90 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="w-6 h-6" aria-hidden="true" />
                   </Popover.Button>
                 </div>
               </div>
               <div className="mt-6">
-                <nav className="grid gap-6">
-                  {solutions.map((item) => (
+                <nav className="grid gap-6 space-y-1">
+             {/*     {solutions.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -377,12 +268,7 @@ export function NewHeader() {
                       </div>
                       <div className="ml-4 text-base font-medium text-gray-900">{item.name}</div>
                     </a>
-                  ))}
-                </nav>
-              </div>
-            </div>
-            <div className="px-5 py-6">
-              <div className="grid grid-cols-2 gap-4">
+                  ))}*/}
                 <NavItem href="/">Home</NavItem>
                 <NavItem href="/about">About</NavItem>
                 <NavItem href="/articles">Articles</NavItem>
@@ -390,32 +276,10 @@ export function NewHeader() {
                 <NavItem href="/speaking">Speaking</NavItem>
                 <NavItem href="/uses">Uses</NavItem>
                 <ModeToggle />
-                
-                {resources.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                </nav>
               </div>
-              {/* <div className="mt-6">
-                <a
-                  href="#"
-                  className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-orange-600 border border-transparent rounded-md shadow-sm hover:bg-orange-700"
-                >
-                  Sign up
-                </a>
-                <p className="mt-6 text-base font-medium text-center text-gray-500">
-                  Existing customer?{' '}
-                  <a href="#" className="text-orange-600 hover:text-orange-500">
-                    Sign in
-                  </a>
-                </p>
-              </div> */}
             </div>
+
           </div>
         </Popover.Panel>
       </Transition>
