@@ -193,7 +193,7 @@ export function NewHeader() {
       initial={{ y: -100, opacity: 0, scale: 0.9 }}
       animate={{ y: 0, opacity: 1, scale: 1 }}
       transition={{ duration: 3, type: 'spring', stiffness: 250, damping: 20 }}
-      className="relative sticky z-50 m-4 rounded-full top-4 ring-1 ring-gray-200 bg-white/80 dark:ring-zinc-700 dark:bg-zinc-800/80 backdrop-blur-sm shadow-xl dark:shadow-orange-400/20"
+      className="relative sticky z-40 m-4 rounded-full top-4 ring-1 ring-gray-200 bg-white/80 dark:ring-zinc-700 dark:bg-zinc-800/80 backdrop-blur-sm shadow-xl dark:shadow-orange-400/20"
     >
     <Popover>
       <div className="flex items-center justify-between px-4 py-6 sm:px-6 md:space-around md:space-x-10">

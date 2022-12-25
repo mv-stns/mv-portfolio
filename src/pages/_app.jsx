@@ -7,6 +7,8 @@ import '@/styles/tailwind.css'
 import 'focus-visible'
 import { NewHeader } from '@/components/NewHeader'
 import { motion } from 'framer-motion'
+import {Notice} from "@/components/NoticeContainer";
+import {LockClosedIcon} from "@heroicons/react/20/solid";
 
 function usePrevious(value) {
   let ref = useRef()
@@ -20,6 +22,18 @@ function usePrevious(value) {
 
 export default function App({ Component, pageProps, router }) {
   let previousPathname = usePrevious(router.pathname)
+
+  // revalidate after 60 seconds
+    pageProps.revalidate = 60
+
+  // cookie collector, that collects nothing but makes the user accept that no cookies are collected
+    useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://cookiehub.net/cc/3b3f4b3c.js'
+    script.async = true
+    document.body.appendChild(script)
+    }, [])
+
 
   return (
     <>
@@ -35,6 +49,7 @@ export default function App({ Component, pageProps, router }) {
           </div>
         </div>
         <div className="relative">
+        <Notice title="Cookie Disclaimer" description="We don't collect anything, just wanted to let you know!" buttonText="Alright" icon="XIcon" />
           <NewHeader />
           <main>
             <Component previousPathname={previousPathname} {...pageProps} />
