@@ -19,15 +19,7 @@ function XIcon({...props}) {
 }
 
 export function Notice({title = '', description = '', buttonText = '', props}) {
-    const [show, setShow] = useState(false)
-
-    // set show to true after 2 seconds
-    useEffect(() => {
-        setTimeout(() => {
-            setShow(true)
-        }, 2000)
-    }
-    , [])
+    const [show, setShow] = useState(true)
 
     //set show to false after 8 seconds
     useEffect(() => {
@@ -35,6 +27,17 @@ export function Notice({title = '', description = '', buttonText = '', props}) {
             setShow(false)
         }, 8000)
     }, [])
+
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setValue((prevValue) => prevValue + 1);
+        }, 80);
+        return () => clearInterval(interval);
+    }, []);
+
+
 
     return (
         <>
@@ -67,15 +70,7 @@ export function Notice({title = '', description = '', buttonText = '', props}) {
                                         <p className="mt-1 text-sm text-gray-400">{description}.</p>
                                     </div>
                                     <div className="ml-4 flex-shrink-0 flex">
-                                        <button
-                                            className="bg-white dark:bg-zinc-800 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-                                            onClick={() => {
-                                                setShow(false)
-                                            }}
-                                        >
-                                            <span className="sr-only">Close</span>
-                                            <XIcon className="h-5 w-5" aria-hidden="true" />
-                                        </button>
+                                        <div id="radial-progress" className="radial-progress text-zinc-700 dark:text-orange-500" style={{"--value": value, "--size": "1rem"}}></div>
                                     </div>
                                 </div>
                             </div>

@@ -105,7 +105,7 @@ export default function About() {
               </p>
               <p>
                 Yours truly,
-                  <Signature className="h-20 text-zinc-700" />
+                  <Signature className="h-20" />
               </p>
             </div>
           </div>

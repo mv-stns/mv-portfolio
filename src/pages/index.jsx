@@ -329,20 +329,8 @@ function Photos() {
             'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
             rotations[imageIndex % rotations.length]
           )}
-          whileHover={{
-            transition: { duration: 0.3, type: 'spring', stiffness: 150 },
-            rotate: -5,
-            className: rotations[imageIndex % rotations.length],
-          }}
-          whileInView={{
-            transition: { duration: 0.3, type: 'spring', stiffness: 150 },
-          }}
 
             key={image.src}
-            // refactor ClassNames to whileInView
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: imageIndex * 0.1 }}
             
 
           >
