@@ -7,8 +7,9 @@ import '@/styles/tailwind.css'
 import 'focus-visible'
 import { NewHeader } from '@/components/NewHeader'
 import { motion } from 'framer-motion'
-import {Notice} from "@/components/NoticeContainer";
-import {LockClosedIcon} from "@heroicons/react/20/solid";
+import { Notice } from "@/components/NoticeContainer";
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { Analytics } from "@vercel/analytics/react";
 
 function usePrevious(value) {
   let ref = useRef()
@@ -57,6 +58,7 @@ export default function App({ Component, pageProps, router }) {
           <Footer />
         </div>
       </motion.div>
+      <Analytics />
     </>
   )
 }
