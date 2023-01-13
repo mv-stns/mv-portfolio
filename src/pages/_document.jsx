@@ -37,7 +37,7 @@ const modeScript = `
 
 export default function Document() {
   return (
-    <Html className="h-full antialiased" lang="en">
+    <Html className="antialiased bg-zinc-50 dark:bg-black" lang="en">
       <Head>
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
         <link
@@ -51,7 +51,7 @@ export default function Document() {
           href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.json`}
         />
       </Head>
-      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
+      <body className="flex flex-col bg-zinc-50 dark:bg-black">
         <Main />
         <NextScript />
       </body>
