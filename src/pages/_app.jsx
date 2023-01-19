@@ -27,14 +27,6 @@ export default function App({ Component, pageProps, router }) {
   // revalidate after 60 seconds
     pageProps.revalidate = 60
 
-  // cookie collector, that collects nothing but makes the user accept that no cookies are collected
-    useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://cookiehub.net/cc/3b3f4b3c.js'
-    script.async = true
-    document.body.appendChild(script)
-    }, [])
-
 
   return (
     <>
