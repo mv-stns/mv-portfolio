@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react'
 
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+/*import { Header } from '@/components/Header'*/
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
 import { NewHeader } from '@/components/NewHeader'
 import { motion } from 'framer-motion'
 import { Notice } from "@/components/NoticeContainer";
-import { LockClosedIcon } from "@heroicons/react/20/solid";
+/*import { LockClosedIcon } from "@heroicons/react/20/solid";*/
 import { Analytics } from "@vercel/analytics/react";
 
 function usePrevious(value) {
