@@ -3,8 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   darkMode: 'class',
   plugins: [
-      require('@tailwindcss/typography'),
-      require('daisyui')
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+    require('tailwind-scrollbar'),
   ],
   theme: {
     fontSize: {
